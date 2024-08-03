@@ -12,7 +12,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<WelcomePage />} />
-          <Route path="/sehir-ekle" element={<SehirEkle />} />
+          <Route path="/sehir-ilce-ekle" element={<SehirEkle />} />
           <Route path="/sehir-listele" element={<SehirListele />} />
         </Routes>
       </Router>

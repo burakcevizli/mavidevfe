@@ -6,7 +6,7 @@ const WelcomePage = () => {
     const navigate = useNavigate();
 
     const onClickHandler = () => {
-        navigate('/sehir-ekle')
+        navigate('/sehir-ilce-ekle')
     }
 
     return (

@@ -7,7 +7,7 @@ const SehirEkle = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:9191/sehir-ekle',{sehir,ilce}).then((response)=>{ 
+    axios.post('http://localhost:9191/sehir-ilce-ekle',{sehir,ilce}).then((response)=>{ 
     })
   };
 
