@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const WelcomePage = () => {
 
     const onClickHandler = () => {
-        alert("Lütfen yukarıdaki navbardan bir seçenek seçiniz.")
+        
     }
 
     return (
@@ -15,7 +15,7 @@ const WelcomePage = () => {
                     <p className="text-xl">Görüntülemek istediğiniz seçeneği butona bastıktan sonra seçebilirsiniz.</p>
                 </div>
                 <button onClick={() => onClickHandler()} className="mt-8 px-6 py-3 bg-white text-blue-500 rounded-full font-semibold">
-                    Hadi Başlayalım.
+                    Bir Sehir ve İlce Eklemek için tıklayın
                 </button>
             </div>
         </div>
