@@ -1,9 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar';
+import WelcomePage from './components/WelcomePage';
 
 function App() {
   return (
     <div className="App">
+        <Navbar />
+        <WelcomePage />
     </div>
   );
 }
