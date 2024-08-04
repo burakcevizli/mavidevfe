@@ -5,7 +5,7 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="bg-blue-500 over text-white">
+        <div className="bg-blue-500 text-white">
             <nav className="container mx-auto p-4 flex justify-between items-center">
                 <h1 className="text-2xl font-bold cursor-pointer" onClick={() => navigate('/')}>Mavidev</h1>
                 <ul className="flex space-x-4">

@@ -1,19 +1,32 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SehirEkle = () => {
   const [sehir, setSehir] = useState('');
   const [ilce, setIlce] = useState('');
 
+  const notify = () => toast(`${sehir} ve ${ilce} başarıyla eklendi.`, {position:'bottom-right'});
+  
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:9191/sehir-ilce-ekle',{sehir,ilce}).then((response)=>{ 
-    })
+    axios.post('http://localhost:9191/sehir-ilce-ekle', { sehir, ilce })
+      .then((response) => {
+        setSehir('');
+        setIlce('');
+        notify();
+      })
+      .catch((error) => {
+        toast.error("Bir hata oluştu : " + error);
+      });
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-700">
-      <div className="bg-slate-400 p-8 rounded-lg shadow-lg w-full max-w-md">
+      <div className="bg-slate-400 p-8 rounded-lg mb-32 shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-900">Şehir ve İlçe Ekle</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -48,6 +61,7 @@ const SehirEkle = () => {
           </button>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 }
