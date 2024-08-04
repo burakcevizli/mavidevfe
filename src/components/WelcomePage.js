@@ -11,7 +11,7 @@ const WelcomePage = () => {
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-800 to-indigo-800">
-            <div className="text-center text-white p-10 bg-opacity-75 bg-black rounded-lg shadow-lg">
+            <div className="text-center text-white p-10 bg-opacity-75 bg-black rounded-lg shadow-lg mb-32">
                 <h1 className="text-6xl font-bold my-4 animate-bounce">Mavidev Sunum Projeme Hoşgeldiniz...</h1>
                 <div className='flex flex-col gap-4'>
                     <p className="text-xl">Sehir-ilçe ekleme ve listeleme ekranlarını görüntüleyeceksiniz.</p>
