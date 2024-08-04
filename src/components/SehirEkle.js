@@ -2,13 +2,27 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import data from '../data/data';
 const SehirEkle = () => {
   const [sehir, setSehir] = useState('');
   const [ilce, setIlce] = useState('');
+  const [ilceler, setIlceler] = useState([]);
 
   const notifySuccess = () => toast(`${sehir} ve ${ilce} başarıyla eklendi.`, { position: 'bottom-right' });
   const notifyError = (message) => toast.error(message, { position: 'bottom-right' });
+
+  const handleCityChange = (e) =>{
+    const secilenSehir = e.target.value;
+    setSehir(secilenSehir);
+    const sehir = data.sehirler.find(sehir => sehir.isim === secilenSehir)
+    if(sehir){
+      setIlceler(sehir.ilceler);
+    }else{
+      setIlceler([]);
+    }
+    setIlce('');
+  }
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,36 +44,37 @@ const SehirEkle = () => {
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-900">Şehir ve İlçe Ekle</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="sehir" className="block mb-2 text-sm font-medium text-gray-900">Şehir Adı</label>
-            <input 
-              type="text" 
-              id="sehir" 
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" 
-              placeholder="Şehir adı giriniz" 
-              value={sehir} 
-              onChange={(e) => setSehir(e.target.value)} 
-              pattern="[a-zA-ZğüşöçıİĞÜŞÖÇ]+" 
-              title="Lütfen sadece harf giriniz."
-              required 
-              autoFocus
-            />
+            <label htmlFor="sehir" className="block mb-2 text-sm font-medium text-gray-900">Şehir</label>
+            <select
+              id="sehir"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              value={sehir}
+              onChange={handleCityChange}
+              required
+            >
+              <option value="">Şehir seçiniz</option>
+              {data.sehirler.map((sehir, index) => (
+                <option key={index} value={sehir.isim}>{sehir.isim}</option>
+              ))}
+            </select>
           </div>
           <div className="mb-6">
-            <label htmlFor="ilce" className="block mb-2 text-sm font-medium text-gray-900">İlçe Adı</label>
-            <input 
-              type="text" 
-              id="ilce" 
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" 
-              placeholder="İlçe adı giriniz" 
-              value={ilce} 
-              onChange={(e) => setIlce(e.target.value)} 
-              pattern="[a-zA-ZğüşöçıİĞÜŞÖÇ]+" 
-              title="Lütfen sadece harf giriniz."
-              required 
-            />
+            <label htmlFor="ilce" className="block mb-2 text-sm font-medium text-gray-900">İlçe</label>
+            <select
+              id="ilce"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              value={ilce}
+              onChange={(e) => setIlce(e.target.value)}
+              required
+            >
+              <option value="">İlçe seçiniz</option>
+              {ilceler.map((ilce, index) => (
+                <option key={index} value={ilce}>{ilce}</option>
+              ))}
+            </select>
           </div>
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full py-2.5 text-center"
           >
             Ekle
@@ -69,6 +84,6 @@ const SehirEkle = () => {
       <ToastContainer />
     </div>
   );
-}
+};
 
 export default SehirEkle;
