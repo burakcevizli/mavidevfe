@@ -7,20 +7,20 @@ const SehirEkle = () => {
   const [sehir, setSehir] = useState('');
   const [ilce, setIlce] = useState('');
 
-  const notify = () => toast(`${sehir} ve ${ilce} başarıyla eklendi.`, {position:'bottom-right'});
-  
-
+  const notifySuccess = () => toast(`${sehir} ve ${ilce} başarıyla eklendi.`, { position: 'bottom-right' });
+  const notifyError = (message) => toast.error(message, { position: 'bottom-right' });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     axios.post('http://localhost:9191/sehir-ilce-ekle', { sehir, ilce })
       .then((response) => {
         setSehir('');
         setIlce('');
-        notify();
+        notifySuccess();
       })
       .catch((error) => {
-        toast.error("Bir hata oluştu : " + error);
+        notifyError("Bir hata oluştu: " + error.message);
       });
   };
 
@@ -38,7 +38,10 @@ const SehirEkle = () => {
               placeholder="Şehir adı giriniz" 
               value={sehir} 
               onChange={(e) => setSehir(e.target.value)} 
+              pattern="[a-zA-ZğüşöçıİĞÜŞÖÇ]+" 
+              title="Lütfen sadece harf giriniz."
               required 
+              autoFocus
             />
           </div>
           <div className="mb-6">
@@ -50,6 +53,8 @@ const SehirEkle = () => {
               placeholder="İlçe adı giriniz" 
               value={ilce} 
               onChange={(e) => setIlce(e.target.value)} 
+              pattern="[a-zA-ZğüşöçıİĞÜŞÖÇ]+" 
+              title="Lütfen sadece harf giriniz."
               required 
             />
           </div>
