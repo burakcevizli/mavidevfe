@@ -68,7 +68,7 @@ const SehirEkle = () => {
               onChange={(e) => setIlce(e.target.value)}
               required
             >
-              <option value="">İlçe seçiniz</option>
+             <option value="">İlçe seçiniz</option>
               {ilceler.map((ilce, index) => (
                 <option key={index} value={ilce}>{ilce}</option>
               ))}

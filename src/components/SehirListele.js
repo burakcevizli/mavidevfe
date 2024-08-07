@@ -1,20 +1,24 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const SehirListele = () => {
 
   const [sehirIlceler, setSehırIlceler] = useState([]);
-  const notifyNotFoundData = () => toast("Veri Bulunamadı", { position: 'top-center' });
+
+  const buttonHandler = (id) =>{
+    axios.delete(`http://localhost:9191/sehir-ilce/sil/${id}`)
+    .then((res)=>{
+      setSehırIlceler(sehirIlceler.filter((item) => item.id !== id))
+    }).catch((err)=>{
+      console.log("Error var silmede.")
+    })
+  }
+
 
   useEffect(() => {
     axios.get('http://localhost:9191/sehir-ilce/listele')
       .then((response) => {
         setSehırIlceler(response.data);
-        if (response.data.length === 0) {
-          notifyNotFoundData();
-        }
       })
       .catch((error) => {
         console.log("Aldığım veride hata var : " + error);
@@ -40,18 +44,25 @@ const SehirListele = () => {
                     <td className="px-6 py-4">{item.id}</td>
                     <td className="px-6 py-4">{item.sehir}</td>
                     <td className="px-6 py-4">{item.ilce}</td>
+                    <td>
+                      <button
+                        type="submit"
+                        onClick={()=>buttonHandler(item.id)}
+                        className="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full py-2.5 text-center"
+                      >
+                        Sil
+                      </button></td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="3" className="px-6 py-4 text-center">Veri Bulunamadı</td>
+                  <td colSpan="3" className="px-6 py-4 text-center text-[2xl] text-gray-100">Veri Bulunamadı</td>
                 </tr>
               )}
             </tbody>
           </table>
         </div>
       </div>
-      <ToastContainer />
     </div>
   );
 }
