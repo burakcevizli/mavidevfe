@@ -9,7 +9,7 @@ const SehirListele = () => {
   const notifyNotFoundData = () => toast("Veri Bulunamadı", { position: 'top-center' });
 
   useEffect(() => {
-    axios.get('http://localhost:9191/sehir-listele')
+    axios.get('http://localhost:9191/sehir-ilce/listele')
       .then((response) => {
         setSehırIlceler(response.data);
         if (response.data.length === 0) {

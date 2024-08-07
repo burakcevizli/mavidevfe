@@ -27,7 +27,7 @@ const SehirEkle = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    axios.post('http://localhost:9191/sehir-ilce-ekle', { sehir, ilce })
+    axios.post('http://localhost:9191/sehir-ilce/ekle', { sehir, ilce })
       .then((response) => {
         setSehir('');
         setIlce('');
@@ -51,6 +51,7 @@ const SehirEkle = () => {
               value={sehir}
               onChange={handleCityChange}
               required
+              autoFocus
             >
               <option value="">Şehir seçiniz</option>
               {data.sehirler.map((sehir, index) => (
