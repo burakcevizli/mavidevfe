@@ -1,17 +1,24 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SehirListele = () => {
 
   const [sehirIlceler, setSehırIlceler] = useState([]);
+  const notifyNotFoundData = () => toast("Veri Bulunamadı", { position: 'top-center' });
 
   useEffect(() => {
-    axios.get('http://localhost:9191/sehir-listele').then((response) => {
-      setSehırIlceler(response.data);
-      console.log(response.data);
-    }).catch((error) => {
-      console.log("Aldığım veride hata var : " + error);
-    });
+    axios.get('http://localhost:9191/sehir-listele')
+      .then((response) => {
+        setSehırIlceler(response.data);
+        if (response.data.length === 0) {
+          notifyNotFoundData();
+        }
+      })
+      .catch((error) => {
+        console.log("Aldığım veride hata var : " + error);
+      });
   }, []);
 
   return (
@@ -29,7 +36,7 @@ const SehirListele = () => {
             <tbody>
               {sehirIlceler.length > 0 ? (
                 sehirIlceler.map((item) => (
-                  <tr key={item.id} className="hover:bg-white bg-slate-400 transition-colors ">
+                  <tr key={item.id} className="hover:bg-white bg-slate-400 transition-colors">
                     <td className="px-6 py-4">{item.id}</td>
                     <td className="px-6 py-4">{item.sehir}</td>
                     <td className="px-6 py-4">{item.ilce}</td>
@@ -37,13 +44,14 @@ const SehirListele = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="2" className="px-6 py-8 text-center text-gray-600">Veri bulunamadı</td>
+                  <td colSpan="3" className="px-6 py-4 text-center">Veri Bulunamadı</td>
                 </tr>
               )}
             </tbody>
           </table>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }
