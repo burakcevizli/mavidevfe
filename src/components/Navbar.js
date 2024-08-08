@@ -13,13 +13,13 @@ const Navbar = () => {
             <nav className="container mx-auto p-4 flex justify-between items-center">
                 <h1 className="text-2xl font-bold cursor-pointer" onClick={()=>onClickHandler()}>Mavidev</h1>
                 <ul className="flex space-x-4">
-                    <button onClick={() => navigate('/')} type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 ">
+                    <button onClick={() => navigate('/')} type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 ">
                         Anasayfa
                     </button>
-                    <button onClick={() => navigate('sehir-ilce-ekle')} type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5">
+                    <button onClick={() => navigate('sehir-ilce-ekle')} type="button" className="text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm px-5">
                         Şehir-İlçe Ekle
                     </button>
-                    <button onClick={() => navigate('sehir-listele')} type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5">
+                    <button onClick={() => navigate('sehir-listele')} type="button" className="text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm px-5">
                         Şehir-İlçe Listele
                     </button>
                 </ul>
