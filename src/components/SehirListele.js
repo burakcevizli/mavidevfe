@@ -43,11 +43,16 @@ const SehirListele = () => {
   return (
     <div className='min-h-screen bg-slate-700'>
       <div className='w-[80%] mx-auto pt-32'>
-        <div className='flex justify-end'>
-        <button 
-        onClick={hepsiniTemizleHandler}
-        className="text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-8 py-2.5 text-center">Hepsini Temizle</button>
-        </div>
+      {sehirIlceler.length > 0 && (
+          <div className='flex justify-end'>
+            <button 
+              onClick={hepsiniTemizleHandler}
+              className="text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-8 py-2.5 text-center"
+            >
+              Hepsini Temizle
+            </button>
+          </div>
+        )}
           <table className="w-full text-sm text-left">
             <thead className="bg-gray-900 text-white">
               <tr>
