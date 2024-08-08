@@ -45,6 +45,7 @@ const SehirEkle = () => {
               onChange={handleCityChange}
               required
               autoFocus
+              pattern="[A-Za-zÇŞĞÜÖİçşğüöı\s]+"
             >
             </input>
           </div>
@@ -56,6 +57,7 @@ const SehirEkle = () => {
               placeholder='Lütfen İlçe Giriniz'
               onChange={(e) => setIlce(e.target.value)}
               required
+              pattern="[A-Za-zÇŞĞÜÖİçşğüöı\s]+"
             >
             </input>
           </div>
