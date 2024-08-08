@@ -17,10 +17,10 @@ const Navbar = () => {
                         Anasayfa
                     </button>
                     <button onClick={() => navigate('sehir-ilce-ekle')} type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5">
-                        Sehir-İlce Ekle
+                        Şehir-İlçe Ekle
                     </button>
                     <button onClick={() => navigate('sehir-listele')} type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5">
-                        Sehir-İlce Listele
+                        Şehir-İlçe Listele
                     </button>
                 </ul>
             </nav>
