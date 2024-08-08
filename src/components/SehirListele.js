@@ -31,6 +31,7 @@ const SehirListele = () => {
           <table className="w-full text-sm text-left">
             <thead className="bg-gray-900 text-white">
               <tr>
+                <th scope="col" className="px-6 py-3 underline text-center border-b border-gray-700">Sıra</th>
                 <th scope="col" className="px-6 py-3 underline text-center border-b border-gray-700">ID</th>
                 <th scope="col" className="px-6 py-3 underline text-center border-b border-gray-700">Şehir</th>
                 <th scope="col" className="px-6 py-3 underline border-b text-center border-gray-700">İlçe</th>
@@ -39,8 +40,9 @@ const SehirListele = () => {
             </thead>
             <tbody>
               {sehirIlceler.length > 0 ? (
-                sehirIlceler.map((item) => (
+                sehirIlceler.map((item,i) => (
                   <tr key={item.id} className="hover:bg-white bg-slate-400 transition-colors">
+                    <td className="px-6 text-center py-4">{i + 1}</td>
                     <td className="px-6 text-center py-4">{item.id}</td>
                     <td className="px-6 text-center py-4">{item.sehir}</td>
                     <td className="px-6 text-center py-4">{item.ilce}</td>
