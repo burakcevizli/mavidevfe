@@ -1,9 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SehirListele = () => {
 
   const [sehirIlceler, setSehırIlceler] = useState([]);
+
+  const notifySuccess = () => toast(`Hepsi temizlendi.`, { position: 'bottom-right' });
+
 
   const buttonHandler = (id) =>{
     axios.delete(`http://localhost:9191/sehir-ilce/sil/${id}`)
@@ -11,6 +16,16 @@ const SehirListele = () => {
       setSehırIlceler(sehirIlceler.filter((item) => item.id !== id))
     }).catch((err)=>{
       console.log("Error var silmede.")
+    })
+  }
+
+  const hepsiniTemizleHandler = () =>{
+    axios.delete('http://localhost:9191/sehir-ilce/sil/hepsi')
+    .then((response)=>{
+      setSehırIlceler([])
+      notifySuccess()
+    }).catch((err)=>{
+      console.log("Hepsi silme başarısız.")
     })
   }
 
@@ -28,6 +43,11 @@ const SehirListele = () => {
   return (
     <div className='min-h-screen bg-slate-700'>
       <div className='w-[80%] mx-auto pt-32'>
+        <div className='flex justify-end'>
+        <button 
+        onClick={hepsiniTemizleHandler}
+        className="text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-8 py-2.5 text-center">Hepsini Temizle</button>
+        </div>
           <table className="w-full text-sm text-left">
             <thead className="bg-gray-900 text-white">
               <tr>
@@ -53,17 +73,20 @@ const SehirListele = () => {
                         className="text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-8 py-2.5 text-center"
                       >
                         Sil
-                      </button></td>
+                      </button>
+                      </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="3" className="px-6 py-4 text-center text-[2xl] text-gray-100">Veri Bulunamadı</td>
+                  <td colSpan='5' className="px-6 py-6 font-bold text-center text-[2xl] text-gray-100">Veri Bulunamadı</td>
                 </tr>
               )}
             </tbody>
           </table>
       </div>
+      <ToastContainer />
+
     </div>
   );
 }

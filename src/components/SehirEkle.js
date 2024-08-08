@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import data from '../data/data';
+
 const SehirEkle = () => {
   const [sehir, setSehir] = useState('');
   const [ilce, setIlce] = useState('');
-  const [ilceler, setIlceler] = useState([]);
 
   const notifySuccess = () => toast(`${sehir} ve ${ilce} başarıyla eklendi.`, { position: 'bottom-right' });
   const notifyError = (message) => toast.error(message, { position: 'bottom-right' });
@@ -14,12 +13,6 @@ const SehirEkle = () => {
   const handleCityChange = (e) =>{
     const secilenSehir = e.target.value;
     setSehir(secilenSehir);
-    const sehir = data.sehirler.find(sehir => sehir.isim === secilenSehir)
-    if(sehir){
-      setIlceler(sehir.ilceler);
-    }else{
-      setIlceler([]);
-    }
     setIlce('');
   }
 
@@ -45,34 +38,29 @@ const SehirEkle = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="sehir" className="block mb-2 text-sm font-medium text-gray-900">Şehir</label>
-            <select
+            <input
               id="sehir"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              value={sehir}
+              //value={sehir}
+              placeholder='Lütfen Şehir Giriniz'
               onChange={handleCityChange}
               required
               autoFocus
             >
-              <option value="">Şehir seçiniz</option>
-              {data.sehirler.map((sehir, index) => (
-                <option key={index} value={sehir.isim}>{sehir.isim}</option>
-              ))}
-            </select>
+              
+            </input>
           </div>
           <div className="mb-6">
             <label htmlFor="ilce" className="block mb-2 text-sm font-medium text-gray-900">İlçe</label>
-            <select
+            <input
               id="ilce"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              value={ilce}
+              //value={ilce}
+              placeholder='Lütfen İlçe Giriniz'
               onChange={(e) => setIlce(e.target.value)}
               required
             >
-             <option value="">İlçe seçiniz</option>
-              {ilceler.map((ilce, index) => (
-                <option key={index} value={ilce}>{ilce}</option>
-              ))}
-            </select>
+            </input>
           </div>
           <button
             type="submit"
