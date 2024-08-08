@@ -10,7 +10,7 @@ const SehirEkle = () => {
   const notifySuccess = () => toast(`${sehir} ve ${ilce} başarıyla eklendi.`, { position: 'bottom-right' });
   const notifyError = (message) => toast.error(message, { position: 'bottom-right' });
 
-  const handleCityChange = (e) =>{
+  const handleCityChange = (e) => {
     const secilenSehir = e.target.value;
     setSehir(secilenSehir);
     setIlce('');
@@ -19,7 +19,7 @@ const SehirEkle = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     axios.post('http://localhost:9191/sehir-ilce/ekle', { sehir, ilce })
       .then((response) => {
         setSehir('');
@@ -46,7 +46,6 @@ const SehirEkle = () => {
               required
               autoFocus
             >
-              
             </input>
           </div>
           <div className="mb-6">
