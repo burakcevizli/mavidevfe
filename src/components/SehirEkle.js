@@ -7,7 +7,7 @@ const SehirEkle = () => {
   const [sehir, setSehir] = useState('');
   const [ilce, setIlce] = useState('');
 
-  const notifySuccess = () => toast(`${sehir} ve ${ilce} başarıyla eklendi.`, { position: 'bottom-right' });
+  const notifySuccess = () => toast(`${sehir} - ${ilce} başarıyla eklendi.`, { position: 'bottom-right' });
   const notifyError = (message) => toast.error(message, { position: 'bottom-right' });
 
   const handleCityChange = (e) => {
