@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const SehirEkle = () => {
   const [sehir, setSehir] = useState('');
   const [ilce, setIlce] = useState('');
+  const [nufus, setNufus] = useState(null);
 
   const notifySuccess = () => toast(`${sehir} - ${ilce} başarıyla eklendi.`, { position: 'bottom-right' });
   const notifyError = (message) => toast.error(message, { position: 'bottom-right' });
@@ -22,8 +23,6 @@ const SehirEkle = () => {
 
     axios.post('http://localhost:9191/sehir-ilce/ekle', { sehir, ilce })
       .then((response) => {
-        setSehir('');
-        setIlce('');
         notifySuccess();
       })
       .catch((error) => {
@@ -61,6 +60,17 @@ const SehirEkle = () => {
             >
             </input>
           </div>
+          {/* <div className="mb-6">
+            <label htmlFor="ilce" className="block mb-2 text-sm font-medium text-gray-900">Nufus</label>
+            <input
+              id="ilce"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              placeholder='Lütfen Nufus Giriniz'
+              onChange={(e) => setNufus(e.target.value)}
+              required
+            >
+            </input>
+          </div> */}
           <button
             type="submit"
             className="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full py-2.5 text-center"

@@ -34,6 +34,7 @@ const SehirListele = () => {
     axios.get('http://localhost:9191/sehir-ilce/listele')
       .then((response) => {
         setSehırIlceler(response.data);
+        console.log("DEGER : " , response.data)
       })
       .catch((error) => {
         console.log("Aldığım veride hata var : " + error);
@@ -60,6 +61,7 @@ const SehirListele = () => {
                 <th scope="col" className="px-6 py-3 underline text-center border-b border-gray-700">ID</th>
                 <th scope="col" className="px-6 py-3 underline text-center border-b border-gray-700">Şehir</th>
                 <th scope="col" className="px-6 py-3 underline border-b text-center border-gray-700">İlçe</th>
+                <th scope="col" className="px-6 py-3 underline border-b text-center border-gray-700">Nufus</th>
                 <th scope="col" className="px-6 py-3 underline border-b text-center border-gray-700">İşlem</th>
               </tr>
             </thead>
